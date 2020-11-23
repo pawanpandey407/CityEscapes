@@ -1,0 +1,52 @@
+<% layout('layouts/boilerplate') %>
+  <div class="row">
+    <h1 class="text-center">Edit Site</h1>
+    <div class="col-md-6 offset-md-3">
+      <form action="/sites/<%= site._id %>?_method=PUT" method="POST" novalidate class="needs-validation">
+        <div class="mb-3">
+          <label class="form-label" for="title">Title</label>
+          <input class="form-control" type="text" id="title" name="site[title]" value="<%= site.title %>" required>
+          <div class="valid-feedback">
+            Looks Good!
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="location">Location</label>
+          <input class="form-control" type="text" id="location" name="site[location]" value="<%= site.location %>" required>
+          <div class="valid-feedback">
+            Looks Good!
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="image">Image URL</label>
+          <input class="form-control" type="text" id="image" name="site[image]" value="<%= site.image %>" required>
+          <div class="valid-feedback">
+            Looks Good!
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="price-label">Site Price</label>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="price-label">$</span>
+          <input type="text" class="form-control" id="price-label" name="site[price]" value="<%= site.price %>" placeholder="0.00" aria-label="Username" aria-describedby="price-label" required>
+          <div class="valid-feedback">
+            Looks Good!
+          </div>
+        </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="description">Description</label>
+          <textarea class="form-control" type="text" id="description" name="site[description]" required>
+            <%=site.description%></textarea>
+            <div class="valid-feedback">
+              Looks Good!
+            </div>
+        </div>
+        <div class="mb-3">
+          <button class="btn btn-success">Update Site</button>
+        </div>
+      </form>
+      <a href="/sites/<%=site._id%>">Go Back</a>
+    </div>
+  </div>
+  
