@@ -28,8 +28,17 @@ const seedDB = async () => {
             owner: '5fb83a779bc4962af508b316',
             location: `${cities[random1000].city}, ${cities[random1000].state}`,
             title: `${sample(descriptors)} ${sample(places)}`,
-            image: 'https://source.unsplash.com/collection/483251',
             description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae qui reiciendis minima sed autem inventore nemo provident iusto facere iste sunt eveniet ducimus rem ipsum voluptas, labore aspernatur voluptate! Vitae?',
+            images: [
+                {
+                  url: 'https://res.cloudinary.com/dfrg6jez8/image/upload/v1606269032/CityEscapes/iaspmbr8dl0trvwbwsfa.jpg',
+                  filename: 'CityEscapes/iaspmbr8dl0trvwbwsfa'
+                },
+                {
+                  url: 'https://res.cloudinary.com/dfrg6jez8/image/upload/v1606269032/CityEscapes/loyh0ydindgqxdlmimsy.jpg',
+                  filename: 'CityEscapes/loyh0ydindgqxdlmimsy'
+                }
+              ],
             geometry: {
                 type: 'Point',
                 coordinates: [

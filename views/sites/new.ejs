@@ -1,9 +1,9 @@
 <% layout('layouts/boilerplate') %>
 
 <div class="row">
-  <h1 class="text-center">Add a New Site</h1>
+  <h1 class="text-center"><em>Add a New Site</em></h1>
   <div class="col-md-6 offset-md-3">
-    <form action="/sites" method="POST" novalidate class="needs-validation">
+    <form action="/sites" method="POST" novalidate class="needs-validation" enctype="multipart/form-data">
       <div class="mb-3">
         <label class="form-label" for="title">Title</label>
         <input class="form-control" type="text" id="title" name="site[title]" required>
@@ -19,14 +19,7 @@
         </div>
       </div>
       <div class="mb-3">
-        <label class="form-label" for="image">Image URL</label>
-        <input class="form-control" type="text" id="image" name="site[image]" required>
-        <div class="valid-feedback">
-          Looks Good!
-        </div>
-      </div>
-      <div class="mb-3">
-        <label class="form-label" for="price-label">Site Price</label>
+        <label class="form-label" for="price-label">Price</label>
       <div class="input-group mb-3">
         <span class="input-group-text" id="price-label">$</span>
         <input type="text" class="form-control" id="price-label" name="site[price]" placeholder="0.00" aria-label="Username" aria-describedby="price-label" required>
@@ -42,6 +35,14 @@
           Looks Good!
         </div>
       </div>
+
+      <div class="mb-3">
+        <label for="formFileMultiple" class="form-label">Upload Images</label>
+        <input type="file" class="form-control" id="formFileMultiple" name="image" multiple>
+        <div class="invalid-feedback">
+            A site would look even better or clear by adding image(s).
+        </div>
+    </div>
       <div class="mb-3">
         <button class="btn btn-success">Add Site</button>
       </div>

@@ -1,4 +1,5 @@
 const Site = require('../models/site');
+const { cloudinary } = require('../cloudinary');
 const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
 const mapBoxToken = process.env.MAPBOX_TOKEN;
 const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
@@ -20,8 +21,10 @@ module.exports.createSite = async (req, res, next) => {
 
   const site = new Site(req.body.site);
   site.geometry = geoData.body.features[0].geometry;
+  site.images = req.files.map(f => ({url: f.path, filename: f.filename}));
   site.owner = req.user._id;
   await site.save();
+  console.log(site);
   req.flash('success', 'Site Successfully Added!!');
   res.redirect(`/sites/${site._id}`);
 }
@@ -52,7 +55,16 @@ module.exports.renderEditForm = async (req, res) => {
 
 module.exports.updateSite = async (req, res) => {
   const { id } = req.params;
-  const site = await Site.findByIdAndUpdate(id, {...req.body.site });
+  const site = await Site.findByIdAndUpdate(id, { ...req.body.site });
+  const imgs = req.files.map(f => ({url: f.path, filename: f.filename}));
+  site.images.push(...imgs);
+  await site.save();
+  if(req.body.removeImages) {
+    for(let filename of req.body.removeImages) {
+      await cloudinary.uploader.destroy(filename);
+    }
+    await site.updateOne({$pull: {images: {filename: {$in: req.body.removeImages}}}});
+  }
   req.flash('success', 'Site Successfully Updated!!');
   res.redirect(`/sites/${site._id}`);
 }

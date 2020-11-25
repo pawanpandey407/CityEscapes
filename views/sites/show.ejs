@@ -3,8 +3,33 @@
 
 <div class="row">
   <div class="col-6">
+
+    <div id="SiteCarouselIndicators" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#SiteCarouselIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#SiteCarouselIndicators" data-slide-to="1"></li>
+        <li data-target="#SiteCarouselIndicators" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+        <% site.images.forEach((img, i) => { %> 
+        <div class="carousel-item <%= i === 0 ? 'active' : ''%>">
+          <img src="<%=img.url%>" class="d-block w-100" alt="site-image">
+        </div>
+        <% }) %>
+      </div>
+      <% if(site.images.length > 1) { %> 
+      <a class="carousel-control-prev" href="#SiteCarouselIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#SiteCarouselIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </a>
+      <% } %> 
+    </div>
+
     <div class="card mb-4">
-      <img src="<%=site.image%>" class="card-img-top" alt="site-image">
       <div class="card-body">
         <h5 class="card-title"><%=site.title%></h5>
         <p class="card-text"><%=site.description%></p>
@@ -28,9 +53,9 @@
     </div>
   </div>
   <div class="col-6">
-    <div id="map"></div>
+    <div id="map" class="mb-4"></div>
     <% if(signedInUser) {%> 
-    <h2>Drop a Review</h2>
+    <h2><em>Drop a Review:</em></h2>
     <form action="/sites/<%=site._id%>/reviews" method="POST" class="mb-3 needs-validation" novalidate>
       <div class="mb-3">
       <fieldset class="starability-basic">
@@ -48,7 +73,7 @@
       </fieldset>
       </div>
       <div class="mb-3">
-        <label class="form-label" for="body">Review Text</label>
+        <label class="form-label" for="body">Summary</label>
         <textarea class="form-control" type="text" name="review[body]" id="body" cols="30" rows="4" required>
         </textarea>
         <div class="valid-feedback">
