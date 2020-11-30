@@ -28,6 +28,7 @@ const SiteSchema = new Schema({
   price: Number,
   description: String,
   location: String,
+  createdAt: { type: Date, default: Date.now },
   owner: {
     type: Schema.Types.ObjectId,
     ref: 'User'

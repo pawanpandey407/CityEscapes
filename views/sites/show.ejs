@@ -39,6 +39,9 @@
         <li class="list-group-item">Created by <%=site.owner.username%></li>
         <li class="list-group-item">$<%=site.price%>/night</li>
       </ul>
+      <div class="card-footer text-muted">
+        <%= moment(site.createdAt).fromNow()%>
+      </div>
       <% if(signedInUser && site.owner.equals(signedInUser._id)) { %> 
       <div class="card-body">
         <a class="card-link btn btn-info" href="/sites/<%= site._id %>/edit">Edit Site</a>
@@ -47,9 +50,6 @@
         </form>
       </div>
       <% } %> 
-      <div class="card-footer text-muted">
-        5 days ago
-      </div>
     </div>
   </div>
   <div class="col-6">
@@ -88,6 +88,7 @@
       <div class="card mb-3">
         <div class="card-body">
           <h5 class="card-title"><%=review.owner.username%></h5>
+          <span class="pull-right text-muted"><%= moment(review.createdAt).fromNow()%></span>
           <p class="starability-result" data-rating="<%=review.rating%>">
             <%=review.rating%>
           </p>
