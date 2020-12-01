@@ -17,9 +17,9 @@ body {
 #view-site-button:hover {
   border-color: #2a9d8f;
   color: rgb(3, 58, 3);
-  font-size: 1.5rem;
-  box-shadow: 0 2em 2em -0.5em #2a9d8f;
-  transform: translateY(0.80em);
+  font-size: 1.3rem;
+  box-shadow: 0 1em 1em -0.5em #2a9d8f;
+  transform: translateY(0.50em);
 }
 
 .cover-container {
